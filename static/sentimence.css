@@ -1,0 +1,161 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap');
+
+/* Body Styling */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Poppins', sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: linear-gradient(135deg, #0f0f0f 0%, #1b1b1b 100%);
+  color: #f5f5f5;
+  overflow: hidden;
+}
+
+/* Container */
+.container {
+  width: 90%;
+  max-width: 600px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 16px;
+  padding: 2.5rem;
+  text-align: center;
+  backdrop-filter: blur(15px);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+  animation: fadeIn 1.5s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.container:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
+}
+
+/* Title */
+.title {
+  font-weight: 600;
+  font-size: 2rem;
+  color: #ffffff;
+  margin-bottom: 0.5rem;
+}
+
+.subtitle {
+  font-weight: 300;
+  color: #bfbfbf;
+  margin-bottom: 1.5rem;
+}
+
+#bgVideo {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  min-width: 100%;
+  min-height: 100%;
+  z-index: -1;
+  object-fit: cover;
+  filter: brightness(0.8); /* Optional: makes foreground text readable */
+}
+
+/* Textarea */
+textarea {
+  width: 95%;
+  height: 130px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 10px;
+  color: #ffffff;
+  padding: 1rem;
+  font-size: 1rem;
+  outline: none;
+  resize: none;
+  transition: border 0.3s ease, background 0.3s ease;
+}
+
+
+textarea:focus {
+  border: 1px solid #ffffff;
+  background: rgba(255, 255, 255, 0.12);
+}
+
+textarea::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+/* Button */
+button {
+  margin-top: 1.5rem;
+  background: #ffffff;
+  color: #000000;
+  font-weight: 500;
+  border: none;
+  border-radius: 25px;
+  padding: 0.8rem 2rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+button:hover {
+  background: #222222;
+  transform: scale(1.05);
+  color: #ffffff;
+}
+
+/* Result Box */
+.result {
+  margin-top: 2rem;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 12px;
+  padding: 1rem;
+  min-height: 50px;
+  transition: all 0.3s ease;
+}
+
+.result:hover {
+  background: rgba(255, 255, 255, 0.12);
+}
+
+/* Fade-in Animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Background Floating Circles */
+body::before, body::after {
+  content: '';
+  position: absolute;
+  border-radius: 50%;
+  opacity: 0.1;
+  animation: float 10s infinite ease-in-out;
+}
+
+body::before {
+  width: 300px;
+  height: 300px;
+  top: -100px;
+  left: -100px;
+  background: white;
+}
+
+body::after {
+  width: 250px;
+  height: 250px;
+  bottom: -100px;
+  right: -100px;
+  background: gray;
+  animation-delay: 5s;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(20px); }
+}

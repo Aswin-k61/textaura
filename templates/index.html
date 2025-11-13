@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI Sentiment Analyzer</title>
+  <link rel="stylesheet" href="../static/sentimence.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+
+  <video autoplay muted loop id="bgVideo">
+    <source src="../static/videooo.mp4.mp4" type="video/mp4" />
+  </video>
+
+  <div class="container">
+    <h1 class="title">TextAura <i class="fa-solid fa-comment" style="color: #ffffff;"></i></h1>
+    <p class="subtitle">From Reviews to Revelations: Empowering You with Clear Insights</p>
+
+    <textarea placeholder="Type your text here..." id="inputText"></textarea>
+    <button id="analyzeBtn">Analyze</button>
+
+    <div class="result" id="resultBox">
+      <p id="sentimentOutput">Your analysis will appear here</p>
+    </div>
+  </div>
+
+  <script>
+    const btn = document.getElementById('analyzeBtn');
+    const output = document.getElementById('sentimentOutput');
+    const input = document.getElementById('inputText');
+
+    btn.addEventListener('click', async () => {
+      const text = input.value.trim();
+
+      if (!text) {
+        output.innerText = "⚠️ Please enter some text!";
+        return;
+      }
+
+      output.innerText = "⏳ Analyzing sentiment...";
+
+      try {
+        const response = await fetch("/analyze", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ text })
+        });
+
+        const data = await response.json();
+
+        output.innerText = `Predicted Sentiment: ${data.sentiment.toUpperCase()} 💬\nConfidence: ${(data.confidence * 100).toFixed(1)}%`;
+      } catch (error) {
+        output.innerText = "❌ Error analyzing text. Please try again.";
+        console.error(error);
+      }
+    });
+  </script>
+</body>
+</html>
